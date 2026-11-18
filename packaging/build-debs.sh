@@ -32,8 +32,11 @@ unmount_chroot() {   # never leave bind mounts behind (they point at dist/!)
   local root="$1" m
   [ -n "$root" ] || return 0
   for m in proc out src; do
-    mountpoint -q "$root/$m" 2>/dev/null && { umount "$root/$m" 2>/dev/null || umount -l "$root/$m" 2>/dev/null || true; }
+    if mountpoint -q "$root/$m" 2>/dev/null; then
+      umount "$root/$m" 2>/dev/null || umount -l "$root/$m" 2>/dev/null || true
+    fi
   done
+  return 0
 }
 cleanup() { unmount_chroot "$ROOT_CUR"; rm -rf "$SRC"; }
 trap cleanup EXIT
