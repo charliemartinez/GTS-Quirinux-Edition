@@ -26,7 +26,18 @@ esac
 git diff --quiet && git diff --cached --quiet || \
   echo "WARNING: uncommitted changes are NOT included (building git HEAD)."
 
-SRC="$(mktemp -d)"; trap 'rm -rf "$SRC"' EXIT
+SRC="$(mktemp -d)"
+ROOT_CUR=""
+unmount_chroot() {   # never leave bind mounts behind (they point at dist/!)
+  local root="$1" m
+  [ -n "$root" ] || return 0
+  for m in proc out src; do
+    mountpoint -q "$root/$m" 2>/dev/null && { umount "$root/$m" 2>/dev/null || umount -l "$root/$m" 2>/dev/null || true; }
+  done
+}
+cleanup() { unmount_chroot "$ROOT_CUR"; rm -rf "$SRC"; }
+trap cleanup EXIT
+trap 'exit 130' INT TERM
 git archive HEAD | tar -x -C "$SRC"
 mkdir -p dist
 OUT="$PWD/dist"
@@ -41,14 +52,15 @@ for t in "${TARGETS[@]}"; do
       -v "$PWD/packaging/inner-build.sh":/inner-build.sh:ro \
       "debian:$suite" sh /inner-build.sh "$t" "$q"
   else
-    root="/var/tmp/gts-chroot-$suite"
+    root="/var/tmp/gts-chroot-$suite"; ROOT_CUR="$root"
+    unmount_chroot "$root"                 # clear stale mounts from an interrupted run
     [ -d "$root/usr" ] || debootstrap --variant=minbase "$suite" "$root" http://deb.debian.org/debian
-    mkdir -p "$root/src" "$root/out"
+    mkdir -p "$root/src" "$root/out" "$root/proc"
     mount --bind "$SRC" "$root/src"; mount --bind "$OUT" "$root/out"; mount -t proc proc "$root/proc"
     cp packaging/inner-build.sh "$root/inner-build.sh"
     chroot "$root" env HOST_UID="${SUDO_UID:-0}" HOST_GID="${SUDO_GID:-0}" \
-      sh /inner-build.sh "$t" "$q" || { umount "$root/proc" "$root/out" "$root/src"; exit 1; }
-    umount "$root/proc" "$root/out" "$root/src"
+      sh /inner-build.sh "$t" "$q"
+    unmount_chroot "$root"; ROOT_CUR=""
   fi
 done
 ls -l dist/
