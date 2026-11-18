@@ -1,0 +1,48 @@
+# ======================================================================
+# Archivo:       gts.desktop
+# Autor:         Charlie Martínez® <cmartinez@quirinux.org>
+# Ruta:          /usr/local/share/applications/
+# Licencia:      https://www.gnu.org/licenses/gpl-2.0.txt
+# Propósito:     Lanzador de escritorio personalizado
+# Distribución:  Quirinux 2.x
+# ======================================================================
+
+#
+# Copyright (c) 2019-2025 Charlie Martínez, derechos reservados.
+# Licencia: https://www.gnu.org/licenses/gpl-2.0.txt
+# Usos autorizados y no autorizados de la marca Quirinux:
+# Ver https://www.quirinux.org/aviso-legal
+#
+
+
+[Desktop Entry]
+
+Name=GTS (Ghibli Tracing System)
+Comment=Scan drawings for animation
+Comment[de]=Zeichnungen für Animationen einscannen
+Comment[es]=Escanear dibujos para animación
+Comment[gl]=Escanear debuxos para animación
+Comment[fr]=Numériser des dessins pour l'animation
+Comment[pt]=Digitalizar desenhos para animação
+Comment[it]=Scansiona disegni per l'animazione
+Comment[hu]=Rajzok beolvasása animációhoz
+Comment[ru]=Сканирование рисунков для анимации
+
+Keywords[de]=scan;einlesen;scanner;Flachbett;flatbed;AVW;Vorlagenwechsler;adf;
+Keywords[es]=escanear;escáner;plano;adf;
+Keywords[fr]=numériser;scanner;numériseur;à plat;adf;
+Keywords[gl]=escanear;escáner;flatbed;adf;
+Keywords[hu]=szkennelés;szkenner;beolvasó;síkágyas;adf;
+Keywords[it]=scan;scanner;scansiona;adf;acquisizione;
+Keywords[pt]=digitalizar;digitalizador;tabuleiro de documentos;adf;
+Keywords[ru]=сканировать;сканер;планшетный;автоподатчик;
+Keywords=scan;scanner;flatbed;adf;
+
+Exec=gts
+TryExec=gts
+
+Icon=gts
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Graphics;Scanning;Escaneo;
