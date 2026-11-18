@@ -22,7 +22,7 @@ Package: gts
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: sane-utils
-Description: GTS (Ghibli Tracing System) - scan drawings for animation (Quirinux Edition)
+Description: Ghibli Tracing System - scan drawings for animation (Quirinux Edition)
  GTS scans hand-drawn animation drawings through SANE and traces them
  (line-art cleanup, colour trace) into TIFF or Targa images.
  .
