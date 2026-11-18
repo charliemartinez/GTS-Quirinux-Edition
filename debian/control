@@ -1,0 +1,32 @@
+Source: gts-quirinux
+Section: graphics
+Priority: optional
+Maintainer: Charlie Martínez <cmartinez@quirinux.org>
+Build-Depends: debhelper-compat (= 13),
+               autoconf,
+               automake,
+               autoconf-archive,
+               libtool,
+               pkg-config,
+               libtiff-dev,
+               libfltk1.3-dev,
+               libglew-dev,
+               libgl-dev,
+               libglu1-mesa-dev,
+               libsane-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/charliemartinez/GTS-Quirinux-Edition
+Rules-Requires-Root: no
+
+Package: gts-quirinux
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: sane-utils
+Description: GTS (Ghibli Tracing System) - scan drawings for animation (Quirinux Edition)
+ GTS scans hand-drawn animation drawings through SANE and traces them
+ (line-art cleanup, colour trace) into TIFF or Targa images.
+ .
+ This is the Quirinux Edition of opentoonz/GTS. It calls sane_cancel()
+ after each finished scan and before sane_close(), which fixes a freeze
+ on the second scan with some backends such as Brother brother4
+ (brscan4), and it builds with current SANE (pkg-config) and GCC.
