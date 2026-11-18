@@ -1,7 +1,7 @@
-Source: gts-quirinux
+Source: gts
 Section: graphics
 Priority: optional
-Maintainer: Charlie Martínez <cmartinez@quirinux.org>
+Maintainer: Charlie Martinez <cmartinez@quirinux.org>
 Build-Depends: debhelper-compat (= 13),
                autoconf,
                automake,
@@ -18,7 +18,7 @@ Standards-Version: 4.6.2
 Homepage: https://github.com/charliemartinez/GTS-Quirinux-Edition
 Rules-Requires-Root: no
 
-Package: gts-quirinux
+Package: gts
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: sane-utils

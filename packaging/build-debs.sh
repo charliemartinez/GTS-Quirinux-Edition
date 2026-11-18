@@ -1,11 +1,11 @@
 #!/bin/bash
-# Build gts-quirinux .deb packages from the COMMITTED tree (git HEAD) inside
+# Build gts .deb packages from the COMMITTED tree (git HEAD) inside
 # clean Debian environments, so each one links against that release's libs.
 #
 #   ./packaging/build-debs.sh [daedalus|excalibur|all]
 #
-# daedalus  -> debian:bookworm  -> gts-quirinux_<ver>+q2_amd64.deb
-# excalibur -> debian:trixie    -> gts-quirinux_<ver>+q3_amd64.deb
+# daedalus  -> debian:bookworm  -> gts_<ver>+q2_amd64.deb
+# excalibur -> debian:trixie    -> gts_<ver>+q3_amd64.deb
 #
 # ENGINE=docker (default) or ENGINE=chroot (needs root and debootstrap).
 # Output goes to ./dist/

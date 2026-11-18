@@ -16,12 +16,12 @@ cp -a "$SRC"/. /tmp/gts-build/
 cd /tmp/gts-build
 
 # Version: <upstream>.<rev>+<q2|q3>, as in the other Quirinux packages
-sed -i "1s/.*/gts-quirinux (${REV}+${QS}) ${CODENAME}; urgency=medium/" debian/changelog
+sed -i "1s/.*/gts (${REV}+${QS}) ${CODENAME}; urgency=medium/" debian/changelog
 
 mk-build-deps -ir -t "apt-get -y --no-install-recommends" debian/control
 dpkg-buildpackage -us -uc -b
 
 mkdir -p "$OUT"
-cp ../gts-quirinux_*.deb "$OUT"/
-[ -n "${HOST_UID:-}" ] && chown "$HOST_UID:${HOST_GID:-$HOST_UID}" "$OUT"/gts-quirinux_*.deb || true
-echo "OK: $(ls "$OUT"/gts-quirinux_*+"${QS}"_*.deb)"
+cp ../gts_*.deb "$OUT"/
+[ -n "${HOST_UID:-}" ] && chown "$HOST_UID:${HOST_GID:-$HOST_UID}" "$OUT"/gts_*.deb || true
+echo "OK: $(ls "$OUT"/gts_*+"${QS}"_*.deb)"
