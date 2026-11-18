@@ -1,0 +1,6 @@
+packaging/gts.desktop usr/share/applications
+packaging/icons/48x48/gts.png usr/share/icons/hicolor/48x48/apps
+packaging/icons/64x64/gts.png usr/share/icons/hicolor/64x64/apps
+packaging/icons/128x128/gts.png usr/share/icons/hicolor/128x128/apps
+packaging/icons/256x256/gts.png usr/share/icons/hicolor/256x256/apps
+packaging/icons/512x512/gts.png usr/share/icons/hicolor/512x512/apps

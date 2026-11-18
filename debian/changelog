@@ -1,0 +1,10 @@
+gts-quirinux (2.5.1.1+q2) daedalus; urgency=medium
+
+  * Quirinux Edition of GTS 2.5.1.
+  * Call sane_cancel() after a finished scan and before sane_close()
+    (fixes freeze on second scan with Brother brother4/brscan4).
+  * configure: use pkg-config for SANE (sane-config no longer exists).
+  * Add missing <limits> includes (build with GCC 12+).
+  * Add Quirinux desktop launcher and icon.
+
+ -- Charlie Martínez <cmartinez@quirinux.org>  Tue, 17 Nov 2026 22:30:00 +0100
